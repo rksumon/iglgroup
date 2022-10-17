@@ -88,7 +88,7 @@
 
                 <!--Column-->
                 <div class="column col-md-6 col-sm-12 col-xs-12">
-                    <div class="copyright">Copyright &copy; 2022 <a class="arial-black" href="https://iglgroup.org/">IGL Group. </a> </br> <a target="_blank" href="https://client.iglweb.com/cart.php?a=add&domain=register">Domain Registration</a>, <a target="_blank" href="https://iglweb.com/web/">Web Hosting</a>, Web design & Developed by <a class="arial-black" target="_blank" href="https://iglweb.com/">IGL Web Ltd.</a></div>
+                    <div class="copyright">Copyright &copy; 2022 <a class="arial-black" href="https://iglgroup.org/">IGL Group</a> </br> <a target="_blank" href="https://client.iglweb.com/cart.php?a=add&domain=register">Domain Registration</a>,<a target="_blank" href="https://iglweb.com/web/">Web Hosting</a>, Web design & Developed by <a class="arial-black" target="_blank" href="https://iglweb.com/">IGL Web Ltd</a></div>
                 </div>
 
                 <!--Social Column-->
