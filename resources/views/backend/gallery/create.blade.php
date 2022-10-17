@@ -1,5 +1,21 @@
 @extends('backend.layouts.master')
-
+@section('topbar')
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h4 class="text-themecolor">Upload New Image</h4>
+        </div>
+        <div class="col-md-7 align-self-center text-end">
+            <div class="d-flex justify-content-end align-items-center">
+                <ol class="breadcrumb justify-content-end">
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Gallery</a></li>
+                    <li class="breadcrumb-item active">Create</li>
+                </ol>
+                <button type="button" class="btn btn-info d-none d-lg-block m-l-15 text-white"><i class="fa fa-plus-circle"></i>
+                    <a  href="{{url('admin/gallery/view')}}">View Gallery</a></button>
+            </div>
+        </div>
+    </div>
+@endsection
 @section('content')
     <div class="row">
         <div class="col-12">
@@ -33,11 +49,11 @@
                                     <span class="input-group-text"><i class="ti-timer"></i></span>
                                     <select  name="year" class="form-select" aria-label="Default select example">
                                         <option selected>Select Year</option>
-                                        <option value="">2020</option>
-                                        <option value="">2021</option>
-                                        <option value="">2022</option>
-                                        <option value="">2023</option>
-                                        <option value="">2024</option>
+                                        <option value="2020">2020</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2022">2022</option>
+                                        <option value="2023">2023</option>
+                                        <option value="2024">2024</option>
                                     </select>
                                 </div>
                             </div>

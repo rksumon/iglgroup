@@ -68,7 +68,7 @@
                                 <li class="dropdown"><a href="{{url('/sister_concern')}}">Sister Concern</a>
                                     <ul>
                                         @foreach($sisters as $sister)
-                                        <li class=""><a class="arial-black" href="{{url('/concern/single_view/'.$sister->id)}}">{{$sister->name}}</a></li>
+                                        <li class=""><a class="arial-black" href="{{url('/sister_concern/'.$sister->id)}}">{{$sister->name}}</a></li>
                                         @endforeach
                                     </ul>
                                 </li>

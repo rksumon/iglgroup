@@ -27,20 +27,14 @@
                 <div class="services-block-four col-md-4 col-sm-6 col-xs-12">
                     <div class="inner-box">
                         <div class="image">
-                            <img src="{{asset('image/concern/'.$sister->logo)}}" alt="" />
-                            <div class="icon-box">
-                                <span class="icon flaticon-book"></span>
-                            </div>
-                            <div class="overlay-box">
-                                <div class="overlay-icon">
-                                    <span class="icon flaticon-book"></span>
-                                </div>
-                            </div>
+                            <a href="{{url('sister_concern/'.$sister->id)}}">
+                                <img src="{{asset('image/concern/'.$sister->logo)}}" alt="" />
+                            </a>
                         </div>
                         <div class="lower-content">
-                            <h3><a href="{{url('concern/single_view/'.$sister->id)}}">{{$sister->name}}</a></h3>
+                            <h3><a href="{{url('sister_concern/'.$sister->id)}}">{{$sister->name}}</a></h3>
                             <div class="text">{{$sister->short_description}}.</div>
-                            <a href="{{url('concern/single_view/'.$sister->id)}}" class="read-more">Read More</a>
+                            <a href="{{url('sister_concern/'.$sister->id)}}" class="read-more">Read More</a>
                         </div>
                     </div>
                 </div>

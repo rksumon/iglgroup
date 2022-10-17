@@ -25,7 +25,11 @@ Route::get('/about', [FrontController::class, 'about']);
 Route::get('/team', [FrontController::class, 'team']);
 Route::get('/team/staff', [FrontController::class, 'teamStaff']);
 Route::get('/contact', [FrontController::class, 'contact']);
+
+//Gallery Front
 Route::get('/gallery', [FrontController::class, 'gallery']);
+Route::get('program/{id}', [FrontController::class, 'gallery_year_program']);
+Route::get('program/photo/{id}', [FrontController::class, 'gallery_year_program_photo']);
 
 // Sister Concern
 Route::get('/sister_concern/', [FrontController::class, 'sister_concern_view']);
@@ -34,11 +38,7 @@ Route::get('/sister_concern/{id}', [FrontController::class, 'sister_concern_sing
 
 Route::group(['prefix' => 'admin',  'middleware' => 'auth'], function(){
 
-    Route::get('/dashboard', function () {
-        return view('backend.sister_concern.view');
-
-    });
-    Route::get('/sister_concern/add', function () {
+    Route::get('/sister_concern/create', function () {
         return view('backend.sister_concern.add');
 
     });
@@ -50,13 +50,16 @@ Route::group(['prefix' => 'admin',  'middleware' => 'auth'], function(){
 
     //Gallery
     Route::get('/gallery/view', [GalleryController::class, 'view']);
-    Route::get('/gallery/add', [GalleryController::class, 'create']);
+    Route::get('/gallery/create', [GalleryController::class, 'create']);
     Route::post('/gallery/submit', [GalleryController::class, 'store']);
     Route::get('/gallery/delete/{id}', [GalleryController::class, 'destroy']);
+    Route::get('/gallery/trash', [GalleryController::class, 'trash']);
+    Route::get('/gallery/trash/restore/{id}', [GalleryController::class, 'trash_restore']);
 
 
 });
-Auth::routes(['register' => false]);//Route::get('/image/view', [App\Http\Controllers\ImageUploadController::class, 'index']);
+Auth::routes(['register' => false]);
+//Auth::routes();
 Route::get('{any}', function () {
     return view('/');
 })->where('any','.*');

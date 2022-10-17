@@ -86,11 +86,11 @@
                         <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{asset('backend/assets/images/users/1.jpg')}}" alt="user" class=""> <span class="hidden-md-down">Admin &nbsp;<i class="fa fa-angle-down"></i></span> </a>
                         <div class="dropdown-menu dropdown-menu-end animated flipInY">
                             <!-- text-->
-                            <a href="javascript:void(0)" class="dropdown-item"><i class="ti-user"></i> My Profile</a>
-                            <!-- text-->
-                            <a href="javascript:void(0)" class="dropdown-item"><i class="ti-wallet"></i> My Balance</a>
-                            <!-- text-->
-                            <a href="javascript:void(0)" class="dropdown-item"><i class="ti-email"></i> Inbox</a>
+{{--                            <a href="javascript:void(0)" class="dropdown-item"><i class="ti-user"></i> My Profile</a>--}}
+{{--                            <!-- text-->--}}
+{{--                            <a href="javascript:void(0)" class="dropdown-item"><i class="ti-wallet"></i> My Balance</a>--}}
+{{--                            <!-- text-->--}}
+{{--                            <a href="javascript:void(0)" class="dropdown-item"><i class="ti-email"></i> Inbox</a>--}}
                             <!-- text-->
                             <div class="dropdown-divider"></div>
                             <!-- text-->
@@ -132,21 +132,16 @@
                 <ul id="sidebarnav">
                     <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-speedometer"></i><span class="hide-menu">Sister Concern <span class="badge rounded-pill bg-cyan ms-auto"></span></span></a>
                         <ul aria-expanded="false" class="collapse">
-                            <li><a href="{{url('admin/sister_concern/add')}}">add </a></li>
+                            <li><a href="{{url('admin/sister_concern/create')}}">Add </a></li>
                             <li><a href="{{url('admin/sister_concern/view')}}">View</a></li>
                         </ul>
                     </li>
 
                     <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-speedometer"></i><span class="hide-menu">Gallery <span class="badge rounded-pill bg-cyan ms-auto"></span></span></a>
                         <ul aria-expanded="false" class="collapse">
-                            <li><a href="{{url('admin/gallery/add')}}">add </a></li>
-                            <li><a href="{{url('admin/gallery/view')}}">manage</a></li>
-                        </ul>
-                    </li>
-                    <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-speedometer"></i><span class="hide-menu">Others <span class="badge rounded-pill bg-cyan ms-auto"></span></span></a>
-                        <ul aria-expanded="false" class="collapse">
-                            <li><a href="{{url('admin/gallery/year/view')}}">Create Year</a></li>
-                            <li><a href="{{url('admin/gallery/program/view')}}">Create Program</a></li>
+                            <li><a href="{{url('admin/gallery/create')}}">Add </a></li>
+                            <li><a href="{{url('admin/gallery/view')}}">View</a></li>
+                            <li><a href="{{url('admin/gallery/trash')}}">Trash</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -169,20 +164,8 @@
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
-{{--            <div class="row page-titles">--}}
-{{--                <div class="col-md-5 align-self-center">--}}
-{{--                    <h4 class="text-themecolor">Starter Page</h4>--}}
-{{--                </div>--}}
-{{--                <div class="col-md-7 align-self-center text-end">--}}
-{{--                    <div class="d-flex justify-content-end align-items-center">--}}
-{{--                        <ol class="breadcrumb justify-content-end">--}}
-{{--                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>--}}
-{{--                            <li class="breadcrumb-item active">Starter Page</li>--}}
-{{--                        </ol>--}}
-{{--                        <button type="button" class="btn btn-info d-none d-lg-block m-l-15 text-white"><i class="fa fa-plus-circle"></i> Create New</button>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+            @yield('topbar')
+
             <!-- ============================================================== -->
             <!-- End Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
@@ -266,6 +249,53 @@
 <!-- Magnific popup JavaScript -->
 <script src="{{asset('backend/assets/node_modules/Magnific-Popup-master/dist/jquery.magnific-popup.min.js')}}"></script>
 <script src="{{asset('backend/assets/node_modules/Magnific-Popup-master/dist/jquery.magnific-popup-init.js')}}"></script>
+<script src="{{asset('backend/assets/node_modules/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('backend/assets/node_modules/datatables.net-bs4/js/dataTables.responsive.min.js')}}"></script>
+<script>
+    $(function () {
+        $('#myTable').DataTable();
+        var table = $('#example').DataTable({
+            "columnDefs": [{
+                "visible": false,
+                "targets": 2
+            }],
+            "order": [
+                [2, 'asc']
+            ],
+            "displayLength": 25,
+            "drawCallback": function (settings) {
+                var api = this.api();
+                var rows = api.rows({
+                    page: 'current'
+                }).nodes();
+                var last = null;
+                api.column(2, {
+                    page: 'current'
+                }).data().each(function (group, i) {
+                    if (last !== group) {
+                        $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                        last = group;
+                    }
+                });
+            }
+        });
+        // Order by the grouping
+        $('#example tbody').on('click', 'tr.group', function () {
+            var currentOrder = table.order()[0];
+            if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                table.order([2, 'desc']).draw();
+            } else {
+                table.order([2, 'asc']).draw();
+            }
+        });
+        // responsive table
+        $('#config-table').DataTable({
+            responsive: true
+        });
+
+    });
+
+</script>
 </body>
 
 </html>

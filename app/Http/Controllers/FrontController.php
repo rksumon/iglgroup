@@ -32,33 +32,52 @@ class FrontController extends Controller
         return view('frontend/contact',compact('sisters'));
     }
     public function gallery(){
-         $years = Year::all();
 //        $galleries = Gallery::all();
+        // get all "where year is distinct" and "year last image"
+        $galleries = Gallery::latest()
+            ->distinct('year')
+            ->select('id','year','image','created_at')
+            ->get();
+        $galleries = $galleries->unique('year');
         $sisters = SisterConcern::all();
-//        return view('frontend/photo_gallery',compact('sisters','galleries','years'));
-        return view('frontend/photo_gallery',compact('sisters','years'));
+        return view('frontend/gallery/gallery',compact('galleries','sisters'));
     }
-    public function yearProgram($id){
+    public function gallery_year_program($id){
+        $year_name = Gallery::findOrFail($id);
+        $year_name =   $year_name->year;
+        $galleries = Gallery::latest()
+            ->select('id','year','program','image','created_at')
+            ->where('year', '=', $year_name)
+            ->get();
+         $galleries = $galleries->unique('program');
+        $sisters = SisterConcern::all();
+        return view('frontend/gallery/program',compact('galleries','sisters'));
 
-        $programs = Program::all()->where('year_id','==',$id);
-        $sisters = SisterConcern::all();
-        return view('frontend/gallery_year_program',compact('sisters','programs'));
     }
-    public function yearPhoto($id){
-        $galleries = DB::table('galleries')->where('program_id', $id)->get();
-        //$galleries = Gallery::all();
+    public function gallery_year_program_photo($id){
+        $year = Gallery::findOrFail($id);
+        $year_name = $year->year;
+        $program_name =  $year->program;
+        $galleries = Gallery::latest()
+            ->select('id','year','program','image','created_at')
+            ->where('year', '=', $year_name)
+            ->where('program', '=', $program_name)
+            ->get();
+//        return $galleries;
+        //$galleries = $galleries->unique('program');
         $sisters = SisterConcern::all();
-        return view('frontend/gallery_year_program_photo',compact('sisters','galleries'));
+        return view('frontend/gallery/program_photo',compact('galleries','sisters'));
+
     }
 
     public function sister_concern_view(){
         $sisters = SisterConcern::all();
-        return view('frontend.sister_concern',compact('sisters'));
+        return view('frontend.sister_concern/sister_concern',compact('sisters'));
     }
     public function sister_concern_single_view($id){
         $sisters = SisterConcern::all();
         $single = SisterConcern::findOrFail($id);
 
-        return view('frontend.concern_single_view',compact('sisters','single'));
+        return view('frontend.sister_concern.single_view',compact('sisters','single'));
     }
 }

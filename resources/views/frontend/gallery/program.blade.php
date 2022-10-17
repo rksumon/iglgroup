@@ -31,13 +31,13 @@
                                     <img src="{{asset('image/gallery/'.$gallery->image)}}" alt="" />
                                 </div>
                                 <div class="lower-content">
-                                    <h3><a href="#">{{$gallery->caption}}</a></h3>
+                                    <h3><a href="{{url('program/photo/'.$gallery->id)}}">{{$gallery->program}}</a></h3>
                                 </div>
                             </div>
                         </div>
                     @endforeach
                 @else
-                    <h2> Opps! There are no Photos</h2>
+                    <h2> Opps! There is no Photo</h2>
                 @endif
 
 

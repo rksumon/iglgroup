@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Gallery extends Model
 {
-    protected $softDelete = true;
+    use SoftDeletes;
+    protected $table = 'galleries';
 
-    public function years(){
-        return $this->hasMany(Year::class);
-    }
+
+
 }
