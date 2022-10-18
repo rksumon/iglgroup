@@ -24,24 +24,29 @@
         <div class="col-md-12">
             <h4 class="card-title">Gallery page</h4>
             <h6 class="card-subtitle m-b-20 text-muted">you can make gallery like this</h6></div>
-        @foreach($galleries as $gallery)
-        <div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="el-card-item">
-                    <div class=" el-overlay-1"><a href="{{url('admin/gallery/program/'.$gallery->id)}}"><img src="{{asset('image/gallery/'.$gallery->image)}}"  alt="user" /></a>
-                        <div class="">
-                            <ul class="el-info">
-                                <li><a class="btn default btn-outline image-popup-vertical-fit" href="{{asset('image/gallery/'.$gallery->image)}}"><i class="icon-magnifier"></i></a></li>
-                            </ul>
+        @if(!$galleries->isEmpty())
+            @foreach($galleries as $gallery)
+                <div class="col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="el-card-item">
+                            <div class=" el-overlay-1"><a href="{{url('admin/gallery/program/'.$gallery->id)}}"><img src="{{asset('image/gallery/'.$gallery->image)}}"  alt="user" /></a>
+                                <div class="">
+                                    <ul class="el-info">
+                                        <li><a class="btn default btn-outline image-popup-vertical-fit" href="{{asset('image/gallery/'.$gallery->image)}}"><i class="icon-magnifier"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="el-card-content">
+                                <h3 class="box-title"><a href="{{url('admin/gallery/program/'.$gallery->id)}}">{{$gallery->year}}</a></h3>
+                                <br/> </div>
                         </div>
                     </div>
-                    <div class="el-card-content">
-                        <h3 class="box-title"><a href="{{url('admin/gallery/program/'.$gallery->id)}}">{{$gallery->year}}</a></h3>
-                        <br/> </div>
                 </div>
-            </div>
-        </div>
-        @endforeach
+            @endforeach
+        @else
+            <h2>No data found !</h2>
+        @endif
+
 
     </div>
 {{--    <div class="card">--}}

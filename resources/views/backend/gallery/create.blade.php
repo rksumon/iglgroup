@@ -74,7 +74,7 @@
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="ti-image"></i></span>
-                                    <input type="file" name="image" class="form-control" id="exampleInputEmail3" >
+                                    <input type="file" name="photos[]" class="form-control" id="exampleInputEmail3" multiple >
                                 </div>
                             </div>
                         </div>

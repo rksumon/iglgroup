@@ -38,11 +38,10 @@ class GalleryController extends Controller
         $year_name = $year->year;
         $program_name =  $year->program;
         $galleries = Gallery::latest()
-            ->select('id','year','program','image','caption','created_at')
+            ->select('id','year','program','caption','image','created_at')
             ->where('year', '=', $year_name)
             ->where('program', '=', $program_name)
             ->get();
-        $galleries = $galleries->unique('program');
 
         return view('backend/gallery/photos',compact('galleries'));
     }
@@ -61,27 +60,31 @@ class GalleryController extends Controller
        return view('backend/gallery/create');
    }
    public function store(Request $request){
+      // return $request;
 
        $validated = $request->validate([
            'year' => 'required|string|max:255',
            'program' => 'sometimes|string|max:255',
-           'caption' => 'sometimes|string|max:255',
-           'image' => 'required|mimes:png,jpg,jpeg|max:2048',
+           'photos.*' => 'required|mimes:png,jpg,jpeg|max:2048',
        ]);
-       if($request->file('image')) {
-           $imageName = time() . '.' . $request->image->extension();
-           $request->image->move(public_path('image/gallery'), $imageName);
-       }else{
-           $imageName ='no-image.jpg';
-       }
+       if($request->hasFile('photos')) {
+           foreach ($request->photos as $photo) {
+               $imageName = time() . '.' . $photo->extension();
+               $photo->move(public_path('image/gallery'), $imageName);
+               $gallery = new Gallery();
+               $gallery->year = $request->year;
+               $gallery->program= $request->program;
+               $gallery->image = $imageName;
+               $gallery->caption = $request->caption;
+               $gallery->save();
 
-       $gallery = new Gallery();
-       $gallery->year = $request->year;
-       $gallery->program= $request->program;
-       $gallery->image = $imageName;
-       $gallery->caption = $request->caption;
-       $gallery->save();
+           }
+
+       }else{
+          return 'no photo selected';
+       }
        return back()->with('success', 'Photo Upload Successfully!');
+
    }
 
     public function destroy(Request $request,$id){
@@ -96,6 +99,6 @@ class GalleryController extends Controller
 //        }
         $gallery->delete();
        // Gallery::destroy($id);
-        return back()->with('success', 'Image Deleted Successfully!');
+        return redirect('admin/gallery/view')->with('success', 'Image Deleted Successfully!');
     }
 }
