@@ -59,7 +59,7 @@ class FrontController extends Controller
         $year_name = $year->year;
         $program_name =  $year->program;
         $galleries = Gallery::latest()
-            ->select('id','year','program','image','created_at')
+            ->select('id','year','program','caption','image','created_at')
             ->where('year', '=', $year_name)
             ->where('program', '=', $program_name)
             ->get();

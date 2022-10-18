@@ -54,7 +54,7 @@ User card page
       -webkit-transition: all .4s linear;
       transition: all .4s linear;
       width: 100%;
-      height: auto; }
+      height: 150px; }
     .el-element-overlay .el-card-item .el-overlay-1:hover img {
       -ms-transform: scale(1.2) translateZ(0);
       -webkit-transform: scale(1.2) translateZ(0);

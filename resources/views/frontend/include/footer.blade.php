@@ -7,7 +7,7 @@
                 <!--Footer Logo-->
                 <div class="logo-column col-md-6 col-sm-6 col-xs-12">
                     <div class="logo ">
-                        <a href="#"><img src="{{asset('front/images/logo.png')}}"  height="60px" width="80px" alt="" /></a>
+{{--                        <a href="#"><img src="{{asset('front/images/logo.png')}}"  height="60px" width="80px" alt="" /></a>--}}
                     </div>
                 </div>
                 <!--Nav Column-->
@@ -49,8 +49,8 @@
                 <div class="column network-column col-md-5 col-sm-6 col-xs-12">
                     <span>About Us</span>
                     <ul class="links-footer">
-                        <li><a href="{{url('about')}}">About Company</a></li>
-                        <li><a href="{{url('team')}}">Board of Director</a></li>
+{{--                        <li><a href="{{url('about')}}">About Company</a></li>--}}
+{{--                        <li><a href="{{url('team')}}">Board of Director</a></li>--}}
                         <li><a href="{{'team/staff'}}">Our Staff</a></li>
                     </ul>
                 </div>
@@ -113,7 +113,17 @@
 <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
 <script src="{{asset('front/js/jquery.js')}}"></script>
 <script src="{{asset('front/js/bootstrap.min.js')}}"></script>
+<!-- Bootstrap tether Core JavaScript -->
 <script src="{{asset('front/js/script.js')}}"></script>
+
+
+
+<!--Custom JavaScript -->
+<script src="{{asset('backend/dist/js/custom.min.js')}}"></script>
+
+<script src="{{asset('backend/assets/node_modules/Magnific-Popup-master/dist/jquery.magnific-popup.min.js')}}"></script>
+<script src="{{asset('backend/assets/node_modules/Magnific-Popup-master/dist/jquery.magnific-popup-init.js')}}"></script>
+
 
 @yield('js')
 </body>

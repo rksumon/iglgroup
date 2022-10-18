@@ -16,36 +16,32 @@
     </section>
     <!--End Page Title-->
 
+     <div class="container">
+         <div class="row el-element-overlay">
+             <div class="col-md-12">
+                 <br>
+             @foreach($galleries as $gallery)
+                 <div class="col-lg-3 col-md-6">
+                     <div class="card">
+                         <div class="el-card-item">
+                             <div class=" el-overlay-1"><a href="{{url('program/photo/'.$gallery->id)}}"><img src="{{asset('image/gallery/'.$gallery->image)}}" alt="user" /></a>
+{{--                                 <div class="">--}}
+{{--                                     <ul class="el-info">--}}
+{{--                                         <li><a class="btn default btn-outline image-popup-vertical-fit" href="{{asset('image/gallery/'.$gallery->image)}}"><i class="bi bi-search"></i></a></li>--}}
+{{--                                     </ul>--}}
+{{--                                 </div>--}}
+                             </div>
+                             <div class="el-card-content">
+                                 <h3 class="box-title"><a href="{{url('program/photo/'.$gallery->id)}}">{{$gallery->program}}</a></h3>
+                                 <br/> </div>
+                         </div>
+                     </div>
+                 </div>
+             @endforeach
 
-    <!--Services Page Section-->
-    <div class="services-page-section">
-        <div class="auto-container">
-            <div class="row clearfix">
-
-                @if(!$galleries->isEmpty())
-                    <!--Services Block Four-->
-                    @foreach($galleries as $gallery)
-                        <div class="services-block-four col-md-4 col-sm-6 col-xs-12">
-                            <div class="inner-box">
-                                <div class="image">
-                                    <img src="{{asset('image/gallery/'.$gallery->image)}}" alt="" />
-                                </div>
-                                <div class="lower-content">
-                                    <h3><a href="{{url('program/photo/'.$gallery->id)}}">{{$gallery->program}}</a></h3>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                @else
-                    <h2> Opps! There is no Photo</h2>
-                @endif
-
-
-            </div>
-
-        </div>
-    </div>
-    <!--End Services Page Section-->
+         </div>
+     </div>
+     </div>
 
 @endsection
 

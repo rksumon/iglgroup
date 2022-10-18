@@ -50,6 +50,8 @@ Route::group(['prefix' => 'admin',  'middleware' => 'auth'], function(){
 
     //Gallery
     Route::get('/gallery/view', [GalleryController::class, 'view']);
+    Route::get('/gallery/program/{id}', [GalleryController::class, 'program']);
+    Route::get('/gallery/photos/{id}', [GalleryController::class, 'photos']);
     Route::get('/gallery/create', [GalleryController::class, 'create']);
     Route::post('/gallery/submit', [GalleryController::class, 'store']);
     Route::get('/gallery/delete/{id}', [GalleryController::class, 'destroy']);

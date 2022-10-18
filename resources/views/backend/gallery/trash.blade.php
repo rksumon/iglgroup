@@ -31,6 +31,7 @@
                         <th>No</th>
                         <th>Year</th>
                         <th>Program Name</th>
+                        <th>image</th>
                         <th>Caption</th>
                         <th>Action</th>
                     </tr>
@@ -44,6 +45,7 @@
                             <td>{{$id+=1}}</td>
                             <td>{{$gallery->year}}</td>
                             <td>{{$gallery->program}}</td>
+                            <td><img src="{{asset('image/gallery/'.$gallery->image)}}" height="50" width="80" alt=""></td>
                             <td>{{$gallery->caption}}</td>
                             <td>
                                 <a class="btn btn-danger" onclick="return confirm('Are you want to delete')" href="{{url('admin/gallery/trash/restore/'.$gallery->id)}}">Restore</a>

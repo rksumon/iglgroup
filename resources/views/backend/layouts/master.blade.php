@@ -22,6 +22,8 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         @yield('style')
     <![endif]-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
 </head>
 
 <body class="skin-default fixed-layout">
@@ -83,7 +85,7 @@
                     <!-- User Profile -->
                     <!-- ============================================================== -->
                     <li class="nav-item dropdown u-pro">
-                        <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{asset('backend/assets/images/users/1.jpg')}}" alt="user" class=""> <span class="hidden-md-down">Admin &nbsp;<i class="fa fa-angle-down"></i></span> </a>
+                        <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{asset('backend/assets/images/users/1.jpg')}}" alt="user" class=""> <span class="hidden-md-down">Admin &nbsp;<i class="bi bi-arrow-down-circle"></i></span> </a>
                         <div class="dropdown-menu dropdown-menu-end animated flipInY">
                             <!-- text-->
 {{--                            <a href="javascript:void(0)" class="dropdown-item"><i class="ti-user"></i> My Profile</a>--}}
@@ -100,7 +102,7 @@
                             <!-- text-->
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i>
+                                                     document.getElementById('logout-form').submit();"><i class="bi bi-box-arrow-right"></i>
                                 {{ __('Logout') }}
                             </a>
 

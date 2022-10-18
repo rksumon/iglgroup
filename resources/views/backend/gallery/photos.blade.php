@@ -25,65 +25,67 @@
             <h4 class="card-title">Gallery page</h4>
             <h6 class="card-subtitle m-b-20 text-muted">you can make gallery like this</h6></div>
         @foreach($galleries as $gallery)
-        <div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="el-card-item">
-                    <div class=" el-overlay-1"><a href="{{url('admin/gallery/program/'.$gallery->id)}}"><img src="{{asset('image/gallery/'.$gallery->image)}}"  alt="user" /></a>
-                        <div class="">
-                            <ul class="el-info">
-                                <li><a class="btn default btn-outline image-popup-vertical-fit" href="{{asset('image/gallery/'.$gallery->image)}}"><i class="icon-magnifier"></i></a></li>
-                            </ul>
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="el-card-item">
+                        <div class=" el-overlay-1"><img src="{{asset('image/gallery/'.$gallery->image)}}" alt="user" />
+                            <div class="">
+                                <ul class="el-info">
+                                    <li><a class="btn default btn-outline image-popup-vertical-fit" href="{{asset('image/gallery/'.$gallery->image)}}"><i class="icon-magnifier"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="el-card-content">
+                            <h3 class="box-title">{{$gallery->caption}}</h3>
+                            <br/>
+                            <a class="btn btn-danger" onclick="return confirm('Are you want to delete')" href="{{url('admin/gallery/delete/'.$gallery->id)}}">Delete</a>
                         </div>
                     </div>
-                    <div class="el-card-content">
-                        <h3 class="box-title"><a href="{{url('admin/gallery/program/'.$gallery->id)}}">{{$gallery->year}}</a></h3>
-                        <br/> </div>
                 </div>
             </div>
-        </div>
         @endforeach
 
     </div>
-{{--    <div class="card">--}}
-{{--        @if ($message = Session::get('success'))--}}
-{{--            <div class="alert alert-success alert-block">--}}
-{{--                <strong>{{$message}}</strong>--}}
-{{--            </div>--}}
-{{--        @endif--}}
-{{--        <div class="card-body">--}}
-{{--            <h4 class="card-title">Gallery </h4>--}}
-{{--            <h6 class="card-subtitle">All photos</h6>--}}
-{{--            <div class="table-responsive m-t-40">--}}
-{{--                <table id="myTable" class="table table-striped border">--}}
-{{--                    <thead>--}}
-{{--                    <tr>--}}
-{{--                        <th>No</th>--}}
-{{--                        <th>Year</th>--}}
-{{--                        <th>Program Name</th>--}}
-{{--                        <th>Caption</th>--}}
-{{--                        <th>Action</th>--}}
-{{--                    </tr>--}}
-{{--                    </thead>--}}
-{{--                    <tbody>--}}
-{{--                    @php--}}
-{{--                        $id = 0;--}}
-{{--                    @endphp--}}
-{{--                    @foreach($galleries as $gallery)--}}
-{{--                    <tr>--}}
-{{--                        <td>{{$id+=1}}</td>--}}
-{{--                        <td>{{$gallery->year}}</td>--}}
-{{--                        <td>{{$gallery->program}}</td>--}}
-{{--                        <td>{{$gallery->caption}}</td>--}}
-{{--                        <td>--}}
-{{--                            <a class="btn btn-danger" onclick="return confirm('Are you want to delete')" href="{{url('admin/gallery/delete/'.$gallery->id)}}">Delete</a>--}}
-{{--                        </td>--}}
-{{--                    </tr>--}}
-{{--                    @endforeach--}}
-{{--                    </tbody>--}}
-{{--                </table>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+    {{--    <div class="card">--}}
+    {{--        @if ($message = Session::get('success'))--}}
+    {{--            <div class="alert alert-success alert-block">--}}
+    {{--                <strong>{{$message}}</strong>--}}
+    {{--            </div>--}}
+    {{--        @endif--}}
+    {{--        <div class="card-body">--}}
+    {{--            <h4 class="card-title">Gallery </h4>--}}
+    {{--            <h6 class="card-subtitle">All photos</h6>--}}
+    {{--            <div class="table-responsive m-t-40">--}}
+    {{--                <table id="myTable" class="table table-striped border">--}}
+    {{--                    <thead>--}}
+    {{--                    <tr>--}}
+    {{--                        <th>No</th>--}}
+    {{--                        <th>Year</th>--}}
+    {{--                        <th>Program Name</th>--}}
+    {{--                        <th>Caption</th>--}}
+    {{--                        <th>Action</th>--}}
+    {{--                    </tr>--}}
+    {{--                    </thead>--}}
+    {{--                    <tbody>--}}
+    {{--                    @php--}}
+    {{--                        $id = 0;--}}
+    {{--                    @endphp--}}
+    {{--                    @foreach($galleries as $gallery)--}}
+    {{--                    <tr>--}}
+    {{--                        <td>{{$id+=1}}</td>--}}
+    {{--                        <td>{{$gallery->year}}</td>--}}
+    {{--                        <td>{{$gallery->program}}</td>--}}
+    {{--                        <td>{{$gallery->caption}}</td>--}}
+    {{--                        <td>--}}
+    {{--                            <a class="btn btn-danger" onclick="return confirm('Are you want to delete')" href="{{url('admin/gallery/delete/'.$gallery->id)}}">Delete</a>--}}
+    {{--                        </td>--}}
+    {{--                    </tr>--}}
+    {{--                    @endforeach--}}
+    {{--                    </tbody>--}}
+    {{--                </table>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
 
 
 @endsection

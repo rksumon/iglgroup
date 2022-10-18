@@ -10,7 +10,7 @@
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Sister Concern</a></li>
                     <li class="breadcrumb-item active">View</li>
                 </ol>
-                <button type="button" class="btn btn-info d-none d-lg-block m-l-15 text-white"><i class="fa fa-plus-circle"></i>
+                <button type="button" class="btn btn-info d-none d-lg-block m-l-15 text-white"><i class="bi bi-plus-circle"></i>
                     <a  href="{{url('admin/sister_concern/create')}}">Create New</a></button>
             </div>
         </div>

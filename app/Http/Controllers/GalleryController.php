@@ -11,11 +11,41 @@ class GalleryController extends Controller
 {
    public function view(){
 
-       $galleries = Gallery::all();
-
+//       $galleries = Gallery::all();
+       $galleries = Gallery::latest()
+           ->distinct('year')
+           ->select('id','year','image','created_at')
+           ->get();
+       $galleries = $galleries->unique('year');
 
        return view('backend/gallery/view',compact('galleries'));
    }
+    public function program($id){
+
+        $year_name = Gallery::findOrFail($id);
+        $year_name =   $year_name->year;
+        $galleries = Gallery::latest()
+            ->select('id','year','program','image','created_at')
+            ->where('year', '=', $year_name)
+            ->get();
+        $galleries = $galleries->unique('program');
+
+        return view('backend/gallery/program_view',compact('galleries'));
+    }
+    public function photos($id){
+
+        $year = Gallery::findOrFail($id);
+        $year_name = $year->year;
+        $program_name =  $year->program;
+        $galleries = Gallery::latest()
+            ->select('id','year','program','image','caption','created_at')
+            ->where('year', '=', $year_name)
+            ->where('program', '=', $program_name)
+            ->get();
+        $galleries = $galleries->unique('program');
+
+        return view('backend/gallery/photos',compact('galleries'));
+    }
    public function trash(){
        $galleries = Gallery::onlyTrashed()->get();
        return view('backend/gallery/trash',compact('galleries'));
